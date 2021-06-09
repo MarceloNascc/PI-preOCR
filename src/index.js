@@ -4,7 +4,7 @@ const Operator = require('./class/Operator');
 
 (async function () {
   const image = new Image();
-  await image.init(join(__dirname, 'assets', 'lorem_s12_c02_espacos_noise.pbm'));
+  await image.init(join(__dirname, 'assets', 'grupo_10_imagem_3_linhas_33_palavras_497.pbm'));
   // await image.init('./assets/test.pbm');
 
   const operator = new Operator();
@@ -18,5 +18,5 @@ const Operator = require('./class/Operator');
   );
   // image.setMatrix(operator.negative(image.getMatrix(), 1));
 
-  await image.saveImage(join(__dirname, 'assets', 'testFilter2.pbm'));
+  await image.saveImage(join(__dirname, 'assets', 'image3Result.pbm'));
 })();
