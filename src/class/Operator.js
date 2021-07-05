@@ -12,6 +12,54 @@ class Operator {
     return matrix;
   }
 
+  // verify if the point has match with the mask
+  erode(
+    { matrix, startHeight, startWidth, imageHeight, imageWidth },
+    { mask, maskHeight, maskWidth },
+  ) {
+    // limit verifications
+    if (imageHeight < startHeight || (imageHeight - startHeight) < maskHeight) { // height verification
+      return false;
+    } else if (imageWidth < startWidth || (imageWidth - startWidth) < maskWidth) { //width verification
+      return false;
+    }
+
+    let result = true;
+    // check each point of the mask with the equivalent point of the image
+    for (let height = 0; height < mask.length; height++) {
+      for (let width = 0; width < mask[0].length; width++) {
+        if (matrix[startHeight + height][startWidth + width] !== mask[height][width]) {
+          result = false;
+          break;
+        }
+      }
+
+      // verify if already
+      if (!result) {
+        break;
+      }
+    }
+
+    return result;
+  }
+
+  // create a rectangle in the image
+  createRectangle(imageMatrix, startRec, endRec, height) {
+    // create vertical lines
+    for (let current = startRec[0]; current <= startRec[0] + height; current++) {
+      imageMatrix[current][startRec[1]] = 1;
+      imageMatrix[current][endRec[1]] = 1;
+    }
+
+    // create horizontal lines
+    for (let current = startRec[1]; current <= endRec[0]; current++) {
+      imageMatrix[startRec[0]][current] = 1;
+      imageMatrix[startRec[0] + height][current] = 1;
+    }
+
+    return imageMatrix;
+  }
+
   // operação para aplicar o filtro da mediana
   medianFilter(matrix, height, width) {
     const result = [];
