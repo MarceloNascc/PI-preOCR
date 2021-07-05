@@ -90,10 +90,10 @@ class Operator {
 
   // helper function para calcular a mediana em um ponto da imagem
   _calcMedian(neighborsArray) {
-    neighborsArray.sort();
-    const length = neighborsArray.length;
-
-    return neighborsArray[Math.floor(length / 2)];
+    if (neighborsArray.filter(x => x === 0).length >= 5) {
+      return 0;
+    }
+    return 1;
   }
 
   // helper function para pegar os vizinhos de um pixel
