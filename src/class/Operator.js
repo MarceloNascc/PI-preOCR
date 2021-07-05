@@ -1,6 +1,8 @@
 class Operator {
+  // operação para aplicar a negação na imagem (inverte as cores)
   negative(matrix, maxValue) {
     matrix
+      // para cada linha da imagem, altera o valor de cada um dos pixels
       .forEach((line, currentLine) => {
         line.forEach((pixel, currentPos) => {
           matrix[currentLine][currentPos] = maxValue - pixel;
@@ -10,6 +12,7 @@ class Operator {
     return matrix;
   }
 
+  // operação para aplicar o filtro da mediana
   medianFilter(matrix, height, width) {
     const result = [];
     for (const line of matrix) {
@@ -37,6 +40,7 @@ class Operator {
     return result;
   }
 
+  // helper function para calcular a mediana em um ponto da imagem
   _calcMedian(neighborsArray) {
     neighborsArray.sort();
     const length = neighborsArray.length;
@@ -44,6 +48,7 @@ class Operator {
     return neighborsArray[Math.floor(length / 2)];
   }
 
+  // helper function para pegar os vizinhos de um pixel
   _getNeighbors(matrix, currentLine, currentPixel) {
     const neighbors = [];
 

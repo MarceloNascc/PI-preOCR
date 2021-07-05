@@ -2,10 +2,12 @@ const { readFile, writeFile } = require('fs');
 const { promisify } = require('util');
 
 class Image {
+  // método para inicializar o objeto (carregar a imagem)
   async init(path) {
     this._image = await Image.readImageFile(path);
   }
 
+  // método estático para ler uma imagem
   static async readImageFile(path) {
     const file = await promisify(readFile)(path, { encoding: 'ascii' });
     const lines = file.split('\n');
@@ -15,6 +17,7 @@ class Image {
     let indexCurrent = 0, countLines = 0;
 
     while (true) {
+      // verifica se não é um comentário e faz parte do cabeçalho
       if (lines[indexCurrent][0] !== '#' && countLines < 2) {
         header += `${lines[indexCurrent]}\n`;
         if (countLines === 1) { //current line is second line of the header
@@ -36,6 +39,7 @@ class Image {
     const matrix = [];
     let currentLine = [];
     let countPixels = 0;
+    // lê cada um dos pixels (o cabeçalho já foi lido)
     lines.slice(indexCurrent).forEach((line) => {
       if (line !== '') {
         line.split('').forEach((pixel) => {
@@ -60,6 +64,7 @@ class Image {
     };
   }
 
+  // método estático para escrever as informações de uma imagem em um arquivo
   static async writeImageFile(path, image) {
     let textToNewFile = image.header;
 
@@ -68,6 +73,7 @@ class Image {
     await promisify(writeFile)(path, textToNewFile, { encoding: 'ascii' });
   }
 
+  // salva as informações da imagem atual do objeto
   async saveImage(pathToSave) {
     await Image.writeImageFile(pathToSave, this._image);
   }
