@@ -32,6 +32,7 @@ class TextRecognition {
     return this.image.getHeight() - 1; // not have text
   }
 
+  // find end of current line
   _findLineHeight(inicialPosition){
     const matrix = this.image.getMatrix();
 
