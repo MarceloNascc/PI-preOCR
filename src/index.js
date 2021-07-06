@@ -7,8 +7,8 @@ const TextRecognition = require('./class/TextRecognition');
   console.log(`start at ${new Date()}`);
   const image = new Image();
   const imageResult = new Image();
-  await image.init(join(__dirname, 'assets', 'grupo_10_imagem_1_linhas_29_palavras_419.pbm'));
-  await imageResult.init(join(__dirname, 'assets', 'grupo_10_imagem_1_linhas_29_palavras_419.pbm'));
+  await image.init(join(__dirname, 'assets', 'grupo_10_imagem_3_linhas_33_palavras_497.pbm'));
+  await imageResult.init(join(__dirname, 'assets', 'grupo_10_imagem_3_linhas_33_palavras_497.pbm'));
 
   const operator = new Operator();
 
@@ -39,6 +39,6 @@ const TextRecognition = require('./class/TextRecognition');
   //   operator.negative(imageResult.getMatrix(), 1),
   // );
 
-  await imageResult.saveImage(join(__dirname, 'assets', 'image4Result.pbm'));
+  await imageResult.saveImage(join(__dirname, 'assets', 'image3Result.pbm'));
   console.log(`end at ${new Date()}`);
 })();
