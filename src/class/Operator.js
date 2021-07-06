@@ -34,7 +34,7 @@ class Operator {
         }
       }
 
-      // verify if already
+      // verify if already find a different point
       if (!result) {
         break;
       }
@@ -46,15 +46,15 @@ class Operator {
   // create a rectangle in the image
   createRectangle(imageMatrix, startRec, endRec, height) {
     // create vertical lines
-    for (let current = startRec[0]; current <= startRec[0] + height; current++) {
-      imageMatrix[current][startRec[1]] = 1;
-      imageMatrix[current][endRec[1]] = 1;
+    for (let current = startRec.line; current <= startRec.line + height - 6; current++) {
+      imageMatrix[current][startRec.column] = 1;
+      imageMatrix[current][endRec.column] = 1;
     }
 
     // create horizontal lines
-    for (let current = startRec[1]; current <= endRec[0]; current++) {
-      imageMatrix[startRec[0]][current] = 1;
-      imageMatrix[startRec[0] + height][current] = 1;
+    for (let current = startRec.column; current <= endRec.column; current++) {
+      imageMatrix[startRec.line][current] = 1;
+      imageMatrix[startRec.line + height - 6][current] = 1;
     }
 
     return imageMatrix;
