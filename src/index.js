@@ -26,18 +26,13 @@ const TextRecognition = require('./class/TextRecognition');
       image.getWidth()
     )
   );
-  imageResult.setMatrix(image.getMatrix());
+  imageResult.setMatrix(image.getMatrix().map(line => [...line])); // create a copy for the result
 
   const textRecognition = new TextRecognition(image, imageResult, operator);
   textRecognition.findWords();
 
   console.log(`Palavras: ${textRecognition.wordsCount}`);
   console.log(`Linhas: ${textRecognition.linesCount}`);
-  // image.setMatrix(operator.negative(image.getMatrix(), 1));
-
-  // imageResult.setMatrix(
-  //   operator.negative(imageResult.getMatrix(), 1),
-  // );
 
   await imageResult.saveImage(join(__dirname, 'assets', 'image3Result.pbm'));
   console.log(`end at ${new Date()}`);

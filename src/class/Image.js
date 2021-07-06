@@ -79,11 +79,11 @@ class Image {
   }
 
   getMatrix() {
-    return [...this._image.matrix];
+    return this._image.matrix;
   }
 
   setMatrix(matrix) {
-    this._image.matrix = [...matrix];
+    this._image.matrix = matrix;
   }
 
   getWidth() {
