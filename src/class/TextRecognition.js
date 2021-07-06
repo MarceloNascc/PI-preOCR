@@ -114,7 +114,7 @@ class TextRecognition {
                 this.imageResult.getMatrix(),
                 startWord,
                 endWord,
-                this.emptySpaceHeight,
+                endLine - currentLine,
               ),
             );
           } else { // still in the word
